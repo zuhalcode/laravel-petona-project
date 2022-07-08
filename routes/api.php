@@ -17,11 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::get('/users','index');
 });
 
 Route::controller(UserController::class)->group(fn() => [
-    Route::get('/users','index'),
     Route::post('/users', 'register'),
     Route::post('/users/signin', 'login'),
     Route::post('/users/signout', 'logout'),

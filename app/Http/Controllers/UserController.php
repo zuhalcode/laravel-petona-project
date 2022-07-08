@@ -117,7 +117,13 @@ class UserController extends Controller
             return response(['message' => 'Invalid credentials'], 401);
         }
 
-        return $user;
+        $token = $user->createToken('token')->plainTextToken;
+        $cookie = cookie('jwt', $token, 60 * 24); // 1 day
+
+        return response([
+            'user' => $user,
+            'message' => $token,
+        ])->withCookie($cookie);
     }
 
     public function logout(){

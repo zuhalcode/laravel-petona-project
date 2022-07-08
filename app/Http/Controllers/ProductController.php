@@ -17,7 +17,7 @@ class ProductController extends Controller
     public function index()
     {
         return response()->json([
-            'products' => Product::all(),
+            'products' => Product::latest()->get(),
         ]);
     }
 
