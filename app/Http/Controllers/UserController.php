@@ -17,10 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'message' => 'Hello Worldzuhalganteng!',
-            'data' => User::all(),
-        ]);
+        // 
     }
 
     /**
@@ -41,8 +38,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+        User::create($validatedData);
+
+        return redirect('/login')->with('success', 'Registration Successful! Please login');
     }
+    
 
     /**
      * Display the specified resource.
@@ -87,46 +94,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function register(Request $req){
-        $req->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        User::create([
-            'name' => $req->name,
-            'email' => $req->email,
-            'password' => bcrypt($req->password),
-        ]);
-
-        return response(['message' => 'User has been created'], 201);
-    }
-
-    public function login(Request $req){
-        $req->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        $user = User::where('email', $req->email)->first();
-
-        if(!$user || !Hash::check($req->password, $user->password)){
-            return response(['message' => 'Invalid credentials'], 401);
-        }
-
-        $token = $user->createToken('token')->plainTextToken;
-        $cookie = cookie('jwt', $token, 60 * 24); // 1 day
-
-        return response([
-            'user' => $user,
-            'message' => $token,
-        ])->withCookie($cookie);
-    }
-
-    public function logout(){
-       return response(['message' => 'Logged out'], 200);
     }
 }

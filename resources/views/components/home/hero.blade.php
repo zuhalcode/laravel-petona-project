@@ -1,107 +1,79 @@
 <!-- ====== Hero Section Start -->
-<div class="relative pt-[50px] lg:pt-[50px] pb-[110px] bg-white dark:bg-slate-800">
+<div
+    class="relative pt-[50px] lg:pt-[50px] pb-[85px] bg-gradient-to-br {{ Auth::check() ? "bg-[url('/img/slider/slider-fruit.webp')] bg-contain" : 'from-login-primary via-login-primary to-black' }} dark:bg-slate-800">
     <div class="container">
-      <div class="flex flex-wrap -mx-4">
-        <div class="w-full lg:w-5/12 px-4">
-          <div class="hero-content">
-            <h1
-              class="
-                text-dark
-                dark:text-white
-                font-bold
-                text-4xl
-                sm:text-[42px]
-                lg:text-[40px]
-                xl:text-[42px]
-                leading-snug
-                mb-3
-                lg:mt-20
-              "
-            >
-              Kickstart <br />
-              Startup Website <br />
-              with TailGrids.
-            </h1>
-            <p class="text-base mb-8 text-white max-w-[480px]">
-              With TailGrids, business and students thrive together. Business
-              can perfectly match their staffing to changing demand throughout
-              the dayed.
-            </p>
-            <ul class="flex flex-wrap items-center">
-              <li>
-                <a
-                  href="javascript:void(0)"
-                  class="
-                    py-4
-                    px-6
-                    sm:px-10
-                    lg:px-8
-                    xl:px-10
-                    inline-flex
-                    items-center
-                    justify-center
-                    text-center text-white text-base
-                    bg-primary
-                    hover:bg-opacity-90
-                    font-normal
-                    rounded-lg
-                  "
-                >
-                  My Projects
-                </a>
-              </li>
-            </ul>
-            
-          </div>
-        </div>
-        <div class="hidden lg:block lg:w-1/12 px-4"></div>
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="lg:text-right lg:ml-auto">
-            <div class="relative inline-block z-10 pt-11 lg:pt-0">
-              <img
-                src="https://cdn.tailgrids.com/1.0/assets/images/hero/hero-image-01.png"
-                alt="hero"
-                class="max-w-full lg:ml-auto"
-              />
-              <span class="absolute -left-8 -bottom-8 z-[-1]">
-                <svg
-                  width="93"
-                  height="93"
-                  viewBox="0 0 93 93"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <circle cx="2.5" cy="2.5" r="2.5" fill="#3056D3" />
-                  <circle cx="2.5" cy="24.5" r="2.5" fill="#3056D3" />
-                  <circle cx="2.5" cy="46.5" r="2.5" fill="#3056D3" />
-                  <circle cx="2.5" cy="68.5" r="2.5" fill="#3056D3" />
-                  <circle cx="2.5" cy="90.5" r="2.5" fill="#3056D3" />
-                  <circle cx="24.5" cy="2.5" r="2.5" fill="#3056D3" />
-                  <circle cx="24.5" cy="24.5" r="2.5" fill="#3056D3" />
-                  <circle cx="24.5" cy="46.5" r="2.5" fill="#3056D3" />
-                  <circle cx="24.5" cy="68.5" r="2.5" fill="#3056D3" />
-                  <circle cx="24.5" cy="90.5" r="2.5" fill="#3056D3" />
-                  <circle cx="46.5" cy="2.5" r="2.5" fill="#3056D3" />
-                  <circle cx="46.5" cy="24.5" r="2.5" fill="#3056D3" />
-                  <circle cx="46.5" cy="46.5" r="2.5" fill="#3056D3" />
-                  <circle cx="46.5" cy="68.5" r="2.5" fill="#3056D3" />
-                  <circle cx="46.5" cy="90.5" r="2.5" fill="#3056D3" />
-                  <circle cx="68.5" cy="2.5" r="2.5" fill="#3056D3" />
-                  <circle cx="68.5" cy="24.5" r="2.5" fill="#3056D3" />
-                  <circle cx="68.5" cy="46.5" r="2.5" fill="#3056D3" />
-                  <circle cx="68.5" cy="68.5" r="2.5" fill="#3056D3" />
-                  <circle cx="68.5" cy="90.5" r="2.5" fill="#3056D3" />
-                  <circle cx="90.5" cy="2.5" r="2.5" fill="#3056D3" />
-                  <circle cx="90.5" cy="24.5" r="2.5" fill="#3056D3" />
-                  <circle cx="90.5" cy="46.5" r="2.5" fill="#3056D3" />
-                  <circle cx="90.5" cy="68.5" r="2.5" fill="#3056D3" />
-                  <circle cx="90.5" cy="90.5" r="2.5" fill="#3056D3" />
-                </svg>
-              </span>
+        <div class="flex flex-wrap ">
+            <div class="w-full lg:w-5/12 ">
+                <div class="hero-content  {{ Auth::check() ? 'hidden' : '' }}">
+                    <h1
+                        class=" dark:text-white font-bold text-4xl sm:text-[40px] lg:text-[42px] xl:text-[45px] leading-snug mb-3 lg:mt-5 {{ Auth::check() ? 'text-[green]' : 'text-white' }}">
+                        Membantu Temukan Sayuran dan Buah-Buahan <br />
+                    </h1>
+                    <p
+                        class="text-base font-bold my-8 {{ Auth::check() ? 'text-[green]' : 'text-white' }} max-w-[480px]">
+                        Petona hadir untuk temukan sayuran dan buah-buahan terbaik untukmu, untuk dijual dengan sumber
+                        terpercaya.
+                    </p>
+                    @auth
+                        {{--  --}}
+                        <ul class="flex flex-wrap items-center">
+                            <li>
+                                <a href="#"
+                                    class=" py-4 px-6 sm:px-10 lg:px-8 xl:px-10 inline-flex items-center justify-center text-center font-bold text-white text-base bg-[green] hover:bg-opacity-90  rounded-lg">
+                                    Temukan Barang
+                                </a>
+                            </li>
+                        </ul>
+                        {{-- end button --}}
+                    @endauth
+                </div>
             </div>
-          </div>
+
+            <div class="hidden lg:block lg:w-1/12 px-4"></div> {{-- spacer --}}
+
+            {{-- Hero Pic --}}
+            <div class="w-full lg:w-6/12">
+                <div class="lg:text-left lg:ml-auto">
+                    <div class="relative inline-block z-10 pt-11 lg:pt-0 lg:pl-20">
+                        @auth
+                            <h1
+                                class=" dark:text-white font-bold text-3xl sm:text-[40px] lg:text-[42px] xl:text-[45px] leading-snug mb-3 lg:mt-5 {{ Auth::check() ? 'text-[green]' : 'text-white' }}">
+                                Membantu Temukan Sayuran dan Buah-Buahan <br />
+                            </h1>
+                            <p
+                                class="text-base font-bold my-8 {{ Auth::check() ? 'text-[green]' : 'text-white' }} max-w-[480px]">
+                                Petona hadir untuk temukan sayuran dan buah-buahan terbaik untukmu, untuk dijual dengan
+                                sumber
+                                terpercaya.
+                            </p>
+                            @auth
+                                {{-- button --}}
+                                <ul class="flex flex-wrap items-center">
+                                    <li>
+                                        <a href="#"
+                                            class=" py-4 px-6 sm:px-10 lg:px-8 xl:px-10 inline-flex items-center justify-center text-center font-bold text-white text-base bg-[green] hover:bg-opacity-90  rounded-lg">
+                                            Temukan Barang
+                                        </a>
+                                    </li>
+                                </ul>
+                                {{-- end button --}}
+                            @endauth
+                        @else
+                            <div class="h-[400px] w-[350px] rounded-2xl bg-[rgba(255,255,255,.3)]">
+                                @if ($credential === 'login')
+                                    <x-home.login />
+                                @else
+                                    <x-home.register />
+                                @endif
+                            </div>
+                        @endauth
+                        {{-- <span class="absolute -left-8 -bottom-8 z-[-1]"></span> --}}
+                    </div>
+                </div>
+            </div>
+            {{-- End Hero Pic --}}
+
         </div>
-      </div>
     </div>
-  </div>
-  <!-- ====== Hero Section End -->
+</div>
+<!-- ====== Hero Section End -->

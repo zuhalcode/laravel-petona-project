@@ -8,7 +8,11 @@ module.exports = {
       "./resources/**/*.vue",
   ],
   theme: {
-      extend: {},
+      extend: {
+        colors:{
+          'login-primary' : 'rgb(var(--primary) / <alpha-value>)'
+        }
+      },
   },
   plugins: [require("./plugin")],
 };

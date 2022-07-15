@@ -4,6 +4,7 @@ namespace App\View\Components\Layout;
 
 use Illuminate\View\Component;
 
+
 class Navbar extends Component
 {
     public array $navigationItems = [];
@@ -15,10 +16,12 @@ class Navbar extends Component
     public function __construct()
     {
         $this->navigationItems = [
-            ['label' => 'About', 'href' => '#about'],
-            ['label' => 'Portfolio', 'href' => '#portfolio'],
-            ['label' => 'Coding Tutorials', 'href' => '#tutorials'],
-            ['label' => 'Contact', 'href' => '#contact'],
+            ['label' => 'Beranda', 'href' => '/', 'type' => 'auth'],
+            ['label' => 'Produk', 'href' => 'shop', 'type' => 'auth'],
+            ['label' => 'Keranjang', 'href' => 'cart', 'type' => 'auth'],
+            ['label' => 'Kontak Kami', 'href' => 'contact', 'type' => 'auth'],
+            ['label' => 'Masuk', 'href' => 'login', 'type' => 'guest'],
+            ['label' => 'Daftar', 'href' => 'register' , 'type' => 'guest'],
         ];
     }
 
