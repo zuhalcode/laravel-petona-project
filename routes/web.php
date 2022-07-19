@@ -1,35 +1,27 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', fn () => view('home'));
+Route::get('/dashboard', fn () => view('dashboard.index'));
+
 Route::get('/contact', fn () => view('contact'));
 
-Route::get('/register', fn () => view('home', ['route' => 'register']));
+Route::resource('/products', ProductController::class);
 
-Route::controller(LoginController::class)->group(fn()=>[
-    Route::get('/login', 'index'),
+Route::controller(UserController::class)->group(fn()=>[
+    Route::get('/login', 'loginPage'),
     Route::post('/login', 'authenticate'),
+
+    Route::get('/register', 'registerPage'),
+    Route::post('/register', 'register'),
+
     Route::post('/logout', 'logout'),
 ]);
 
-Route::resource('/users', UserController::class);
 
-Route::get('/guest', fn () => view('guest.home'));
 
-Route::resource('users', UserController::class);
 
 

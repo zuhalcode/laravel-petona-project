@@ -17,7 +17,7 @@ class Navbar extends Component
     {
         $this->navigationItems = [
             ['label' => 'Beranda', 'href' => '/', 'type' => 'auth'],
-            ['label' => 'Produk', 'href' => 'shop', 'type' => 'auth'],
+            ['label' => 'Produk', 'href' => 'products', 'type' => 'auth'],
             ['label' => 'Keranjang', 'href' => 'cart', 'type' => 'auth'],
             ['label' => 'Kontak Kami', 'href' => 'contact', 'type' => 'auth'],
             ['label' => 'Masuk', 'href' => 'login', 'type' => 'guest'],

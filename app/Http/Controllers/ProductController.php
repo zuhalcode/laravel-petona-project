@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 
 class ProductController extends Controller
@@ -16,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'products' => Product::latest()->get(),
+        return view('products', [
+            'products' => Product::all(),
         ]);
     }
 
@@ -37,9 +36,27 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $req)
+    public function store(Request $req)
     {
-        // 
+        
+        $product = new Product;
+        $product->name = $req->name;
+        $product->category_id = $req->category;
+        $product->description = $req->description;
+        $product->amount = $req->amount;
+        $product->price = $req->price;
+
+        if($req->hasFile('image')) {
+            $file = $req->file('image')->store('product-images');
+            $product->image = $file;
+        } 
+
+        $product->save();
+
+        return response([
+            'message' => 'New product has added',
+            'product' => $product,
+        ], 201);
     }
 
     /**
@@ -104,7 +121,6 @@ class ProductController extends Controller
         } 
 
         $product->save();
-
 
         return response([
             'message' => 'New product has added',

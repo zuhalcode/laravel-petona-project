@@ -4,18 +4,10 @@
             free</span>
         Buat Akun Baru
     </span>
-    <form action="/users" method="post"
+    <form action="/register" method="post"
         class="mx-auto h-auto w-[270px] gap-2 space-y-3 sm:grid sm:w-[293px] sm:space-y-0">
         @csrf
-        {{-- {{ dd($registerInputs ?? 'zuhal') }} --}}
-        {{-- @foreach ($registerInputs as $input)
-            <div class="mx-3 grid w-4/5 rounded-xl bg-white sm:col-span-2 sm:mx-0 sm:w-full">
-                <p class="px-3 pt-1 font-[Poppins] text-[14px] opacity-75 sm:pt-2">{{ $input['label'] }}</p>
-                <input name="email" autoComplete="off" type="{{ $input['type'] }}"
-                    class="sm:text-md h-5 w-full rounded-xl px-3 pb-2 text-sm placeholder-[#008000] outline-none  placeholder:font-[Poppins] placeholder:text-sm sm:h-8 sm:pb-2"
-                    placeholder="{{ $input['placeholder'] }}" required />
-            </div>
-        @endforeach --}}
+
         <div class="mx-3 grid w-4/5 rounded-xl bg-white sm:col-span-2 sm:mx-0 sm:w-full">
             <p class="px-3 pt-1 font-[Poppins] text-[14px] opacity-75 sm:pt-2">Name</p>
             <input name="name" autoComplete="off" type="name"

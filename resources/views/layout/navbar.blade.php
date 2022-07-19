@@ -23,13 +23,18 @@
                         <ul class="block lg:flex lg:items-center">
                             @foreach ($navigationItems as $item)
                                 @auth
-                                    @if ($item['label'] === 'Beranda' || $item['label'] === 'Produk' || $item['label'] === 'Keranjang' || $item['label'] === 'Kontak Kami')
+                                    @if ($item['label'] === 'Beranda' ||
+                                        $item['label'] === 'Produk' ||
+                                        $item['label'] === 'Keranjang' ||
+                                        $item['label'] === 'Kontak Kami')
                                         <x-layout.navbar-item : href="{{ $item['href'] }}"> {{ $item['label'] }}
                                         </x-layout.navbar-item>
                                     @endif
                                 @else
-                                    <x-layout.navbar-item : href="{{ $item['href'] }}"> {{ $item['label'] }}
-                                    </x-layout.navbar-item>
+                                    @if ($item['label'] !== 'Keranjang')
+                                        <x-layout.navbar-item : href="{{ $item['href'] }}"> {{ $item['label'] }}
+                                        </x-layout.navbar-item>
+                                    @endif
                                 @endauth
                             @endforeach
 
@@ -49,7 +54,7 @@
                                     </button>
                                     <div class="bg-[green] text-white absolute w-28 top-[37px] right-0 hidden flex-col rounded"
                                         id="dropdown">
-                                        <a href="#" class="px-2 py-1 rounded hover:bg-yellow-500">Dashboard</a>
+                                        <a href="/dashboard" class="px-2 py-1 rounded hover:bg-yellow-500">Dashboard</a>
                                         <form action="/logout" class="px-2 py-1 rounded hover:bg-yellow-500" method="post">
                                             @csrf
                                             <button type="submit">Logout</button>
