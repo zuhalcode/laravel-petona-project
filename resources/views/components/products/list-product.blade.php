@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="w-full mb-10">
-        <div class="flex flex-wrap justify-center gap-2 xl:bg-red-500 xl:justify-between lg:gap-y-5 ">
+        <div class="flex flex-wrap justify-center gap-2 xl:justify-between lg:gap-y-5 ">
             @foreach ($listProducts as $product)
                 <div class="sm:w-[300px] lg:max-w-[250px] rounded overflow-hidden border border-slate-300 ">
                     <img class="bg-auto w-full h-[200px] px-3 pt-3" src="{{ '/storage/' . $product->image }}">
