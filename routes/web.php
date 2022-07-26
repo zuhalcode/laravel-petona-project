@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', fn () => view('home'));
-Route::get('/dashboard', fn () => view('dashboard.index'));
+Route::get('/dashboard', fn () => view('dashboard.index'))->middleware('admin');
 
 Route::get('/contact', fn () => view('contact'));
 

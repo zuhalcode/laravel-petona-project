@@ -39,6 +39,8 @@
 
     <div class="mt-2 flex items-center justify-center font-[Poppins] text-[14px]">
         <p class="font-light text-white ">Sudah mempunyai akun?</p> <span
-            class="mx-1 cursor-pointer font-bold text-[#00FFE0] hover:underline hover:underline-offset-2">Masuk</span>
+            class="mx-1 cursor-pointer font-bold text-[#00FFE0] hover:underline hover:underline-offset-2">
+            <a href="/login">Masuk</a>
+        </span>
     </div>
 </div>

@@ -2,7 +2,7 @@
 
     @for ($i = 0; $i < 2; $i++)
         <div
-            class=" mx-auto grid h-[330px] w-[300px] grid-rows-2 items-center justify-center rounded-md
+            class=" mx-auto mt-5 grid h-[330px] w-[300px] grid-rows-2 items-center justify-center rounded-md
             bg-gradient-to-b sm:static sm:z-0 sm:mx-0 sm:mt-5 sm:flex sm:h-auto sm:w-full sm:flex-row
             {{ $i === 0 ? 'from-[#4361ce] to-[#6be1ff]' : 'from-[#ff512f] to-[#dd2476]' }}  ">
             <div class="row-start-2 flex w-full flex-col overflow-hidden text-center sm:w-1/2 sm:text-left">
@@ -14,8 +14,8 @@
                     class="mx-auto mt-5 w-2/3 rounded-xl bg-white text-dark hover:text-white hover:bg-black py-3 text-base font-bold sm:ml-10 sm:w-[180px] sm:py-2">Belanja
                     Sekarang</button>
             </div>
-            <span class="mx-auto mt-4 hidden sm:inline ">
-                <img src="/img/{{ $i === 0 ? 'buahIjo' : 'buahPink' }}.png" alt="fruits" class="w-full" />
+            <span class="mx-auto mt-4 flex justify-center sm:inline ">
+                <img src="/img/{{ $i === 0 ? 'buahIjo' : 'buahPink' }}.png" alt="fruits" class="sm:w-full w-2/3" />
             </span>
         </div>
     @endfor

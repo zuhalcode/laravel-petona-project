@@ -1,5 +1,5 @@
 <!-- ====== Navbar Section Start -->
-<header x-data="{ navbarOpen: false }"
+<header
     class="fixed left-0 top-0 z-50 {{ Auth::check() ? 'bg-white' : 'bg-login-primary' }} w-full flex items-center shadow-md dark:bg-slate-900 h-20">
     <div class="container">
         <div class="flex -mx-4 items-center justify-between relative">
@@ -16,10 +16,12 @@
             </a>
             <div class="flex px-4 justify-end items-center w-full">
                 <div>
-                    <x-layout.navbar-hamburger @click="navbarOpen = !navbarOpen"
-                        x-bind:class="navbarOpen && 'navbarTogglerActive'"></x-layout.navbar-hamburger>
-                    <nav :class="!navbarOpen && 'hidden'" id="navbarCollapse"
-                        class=" absolute right-0 top-full {{ Auth::check() ? 'bg-white' : 'bg-login-primary' }}  py-5 px-6 z-50 shadow rounded-lg w-full dark:bg-slate-900 dark:text-gray-300 lg:max-w-full lg:w-full lg:px-0 lg:right-4 lg:block lg:static lg:shadow-none">
+                    <div id="nav-burger" data-toggle="true">
+                        <x-layout.navbar-hamburger></x-layout.navbar-hamburger>
+                    </div>
+
+                    <nav id="nav-content"
+                        class=" absolute right-0 top-[50px] hidden {{ Auth::check() ? 'bg-white' : 'bg-login-primary' }}  py-5 px-6 z-50 shadow rounded-lg w-full dark:bg-slate-900 dark:text-gray-300 lg:max-w-full lg:w-full lg:px-0 lg:right-4 lg:block lg:static lg:shadow-none">
                         <ul class="block lg:flex lg:items-center">
                             @foreach ($navigationItems as $item)
                                 @auth
@@ -39,7 +41,7 @@
                             @endforeach
 
                             @auth
-                                <li class="relative">
+                                <li class="sm:relative">
                                     <button id="menu-btn"
                                         class="text-base py-1 flex hover:text-yellow-500 dark:text-gray-200  lg:inline-flex lg:ml-6 xl:ml-12 text-[green] font-bold">
                                         {{ ucwords(auth()->user()->name) }}
@@ -52,9 +54,11 @@
                                             </svg>
                                         </span>
                                     </button>
-                                    <div class="bg-[green] text-white absolute w-28 top-[37px] right-0 hidden flex-col rounded"
+                                    <div class="sm:bg-[green] text-[green] sm:text-white sm:absolute w-28 top-[37px] right-0 hidden flex-col rounded"
                                         id="dropdown">
-                                        <a href="/dashboard" class="px-2 py-1 rounded hover:bg-yellow-500">Dashboard</a>
+                                        @can('admin')
+                                            <a href="/dashboard" class="px-2 py-1 rounded hover:bg-yellow-500">Dashboard</a>
+                                        @endcan
                                         <form action="/logout" class="px-2 py-1 rounded hover:bg-yellow-500" method="post">
                                             @csrf
                                             <button type="submit">Logout</button>
@@ -70,6 +74,15 @@
     </div>
 
     <script>
+        document.getElementById('nav-burger').addEventListener('click', (e) => {
+            let parentId = e.target.parentNode.id
+            if (parentId === 'nav-burger' || parentId === 'navbar-toggler') {
+                document.getElementById('nav-content').classList.toggle('hidden')
+            }
+        })
+    </script>
+
+    <script>
         const menuBtn = document.querySelector('#menu-btn')
         const dropdown = document.querySelector('#dropdown')
         const arrowIcon = document.querySelector('#arrow-icon')
@@ -82,7 +95,7 @@
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                             </svg>`
 
-        menuBtn.addEventListener('click', (e) => {
+        menuBtn && menuBtn.addEventListener('click', (e) => {
             dropdown.classList.toggle('hidden')
             dropdown.classList.toggle('flex')
             if (dropdown.classList.contains('hidden')) arrowIcon.innerHTML = arrowDown
