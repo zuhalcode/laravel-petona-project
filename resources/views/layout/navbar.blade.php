@@ -59,7 +59,8 @@
                                         @can('admin')
                                             <a href="/dashboard" class="px-2 py-1 rounded hover:bg-yellow-500">Dashboard</a>
                                         @endcan
-                                        <form action="/logout" class="px-2 py-1 rounded hover:bg-yellow-500" method="post">
+                                        <form action="/logout" class="px-2 py-1 cursor-pointer rounded hover:bg-yellow-500"
+                                            method="post">
                                             @csrf
                                             <button type="submit">Logout</button>
                                         </form>

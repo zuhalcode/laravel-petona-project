@@ -1,12 +1,12 @@
 <!-- ====== Hero Section Start -->
 <div
-    class="relative pt-[50px] lg:pt-[50px] pb-[85px] bg-gradient-to-br {{ Auth::check() ? "bg-[url('/img/slider/slider-fruit.webp')] bg-contain" : 'from-login-primary via-login-primary to-black' }} dark:bg-slate-800">
+    class="relative pt-[50px] lg:pt-[50px] pb-[85px] bg-gradient-to-br {{ Auth::check() ? "bg-[url('/img/slider/slider-fruit.webp')] xl:bg-contain xl:bg-repeat bg-no-repeat xl:bg-top bg-right " : 'from-login-primary via-login-primary to-black' }} dark:bg-slate-800">
     <div class="container">
         <div class="flex flex-wrap ">
             <div class="w-full lg:w-5/12 ">
                 <div class="hero-content  {{ Auth::check() ? 'hidden' : '' }}">
                     <h1
-                        class=" dark:text-white font-bold text-4xl sm:text-[40px] lg:text-[42px] xl:text-[45px] leading-snug mb-3 lg:mt-5 {{ Auth::check() ? 'text-[green]' : 'text-white' }}">
+                        class=" dark:text-white font-bold text-4xl sm:text-[40px] lg:text-[42px] xl:text-[45px] leading-snug mb-3 xl:mt-5 {{ Auth::check() ? 'text-[green]' : 'text-white' }}">
                         Membantu Temukan Sayuran dan Buah-Buahan <br />
                     </h1>
                     <p

@@ -5,11 +5,11 @@
         <li class=" border-b pr-2 flex justify-between items-center">
             Fruits <span class="font-bold text-xl cursor-pointer">+</span>
         </li>
-        <li class=" border-b pr-2 flex justify-between items-center">
+        {{-- <li class=" border-b pr-2 flex justify-between items-center">
             Vegetables <span class="font-bold text-xl">+</span>
         </li>
         <li class=" border-b pr-2 flex justify-between items-center">
             Cucumber <span class="font-bold text-xl">+</span>
-        </li>
+        </li> --}}
     </ul>
 </div>

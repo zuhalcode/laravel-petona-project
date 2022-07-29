@@ -15,12 +15,12 @@
                 <option value="24">24</option>
             </select>
         </div> --}}
-        <div class="">Urutkan
+        {{-- <div class="">Urutkan
             <select class="w-[120px] text-ellipsis py-1 px-1 outline-none rounded cursor-pointer" name="">
                 <option value="9">A - Z</option>
                 <option value="9">Z - A</option>
             </select>
-        </div>
+        </div> --}}
     </div>
     <div class="w-full mb-10">
         <div class="flex flex-wrap justify-center gap-2 xl:justify-between lg:gap-y-5 ">
