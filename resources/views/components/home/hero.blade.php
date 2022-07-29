@@ -1,6 +1,7 @@
 <!-- ====== Hero Section Start -->
 <div
-    class="relative pt-[50px] lg:pt-[50px] pb-[85px] bg-gradient-to-br {{ Auth::check() ? "bg-[url('/img/slider/slider-fruit.webp')] xl:bg-contain xl:bg-repeat bg-no-repeat xl:bg-top bg-right " : 'from-login-primary via-login-primary to-black' }} dark:bg-slate-800">
+    class="relative pt-[50px] lg:pt-[50px] pb-[85px] bg-gradient-to-br 
+    {{ Auth::check() ? "bg-[url('/img/slider/slider-fruit.webp')] xl:bg-contain xl:bg-repeat bg-no-repeat xl:bg-top bg-right " : 'from-login-primary via-login-primary to-black' }} dark:bg-slate-800">
     <div class="container">
         <div class="flex flex-wrap ">
             <div class="w-full lg:w-5/12 ">
