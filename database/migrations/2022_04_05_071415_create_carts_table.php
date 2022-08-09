@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('product_id')->constrained();
+            $table->foreignId('status_id')->constrained();
             $table->integer('quantity')->default(1);
             $table->timestamps();
         });

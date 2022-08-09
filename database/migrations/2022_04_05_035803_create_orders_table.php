@@ -16,11 +16,8 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('product_id')->constrained();
-            $table->foreignId('order_status_id')->constrained();
-            $table->integer('sum_price');
-            $table->text('address');
-            $table->integer('weight');
+            $table->foreignId('status_id')->default(2)->constrained();
+            $table->integer('total_price');
             $table->timestamps();
         });
     }

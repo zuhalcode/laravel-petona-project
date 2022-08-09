@@ -25,12 +25,24 @@
                         <ul class="block lg:flex lg:items-center">
                             @foreach ($navigationItems as $item)
                                 @auth
-                                    @if ($item['label'] === 'Beranda' ||
-                                        $item['label'] === 'Produk' ||
-                                        $item['label'] === 'Keranjang' ||
-                                        $item['label'] === 'Kontak Kami')
+                                    @if ($item['label'] === 'Beranda' || $item['label'] === 'Produk' || $item['label'] === 'Kontak Kami')
                                         <x-layout.navbar-item : href="{{ $item['href'] }}"> {{ $item['label'] }}
                                         </x-layout.navbar-item>
+                                    @elseif($item['label'] === 'Keranjang')
+                                        <li class="flex space-x-3">
+                                            <a href="/cart"
+                                                class="  hover:text-yellow-300 text-base font-bold py-2 flex dark:text-gray-200 lg:inline-flex lg:ml-6 xl:ml-12 {{ Request::is('cart') ? 'text-white bg-[#00c300] px-2 rounded-full' : 'text-[green]' }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                </svg>
+                                            </a>
+                                            <div>
+                                                <p class="text-[13px] font-bold ">Keranjang</p>
+                                                <p class="text-xs">{{ $itemCount }} items</p>
+                                            </div>
+                                        </li>
                                     @endif
                                 @else
                                     @if ($item['label'] !== 'Keranjang')

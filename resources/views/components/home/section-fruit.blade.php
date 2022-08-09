@@ -1,5 +1,4 @@
 <div class="grid px-5 pb-10 w-full space-y-2 md:grid-cols-2 md:gap-3 md:space-y-5">
-
     @for ($i = 0; $i < 2; $i++)
         <div
             class=" mx-auto mt-5 grid h-[330px] w-[300px] grid-rows-2 items-center justify-center rounded-md
