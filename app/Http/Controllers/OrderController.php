@@ -7,6 +7,9 @@ use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+
+
+
 class OrderController extends Controller
 {
     /**
@@ -16,7 +19,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        
+        // 
     }
 
     /**
@@ -37,20 +41,22 @@ class OrderController extends Controller
      */
     public function store()
     {
-        $cart = Cart::where('user_id', auth()->id())->get();
-        $cartProduct = Product::whereIn('id', $cart->pluck('product_id'))->get();
-        $total = 0;
+        
 
-        foreach($cartProduct as $product) {
-            $total += $product->price * $cart->where('product_id', $product->id)->first()->quantity;
-        }
+        // $cart = Cart::where('user_id', auth()->id())->get();
+        // $cartProduct = Product::whereIn('id', $cart->pluck('product_id'))->get();
+        // $total = 0;
 
-        $order = new Order;
-        $order->user_id = auth()->user()->id;
-        $order->total_price = $total;
-        $order->save();
+        // foreach($cartProduct as $product) {
+        //     $total += $product->price * $cart->where('product_id', $product->id)->first()->quantity;
+        // }
 
-        return redirect('/');
+        // $order = new Order;
+        // $order->user_id = auth()->user()->id;
+        // $order->total_price = $total;
+        // $order->save();
+
+        // return redirect('/');
     }
 
     /**
