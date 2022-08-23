@@ -9,8 +9,8 @@
     <title>Petona</title>
 </head>
 
-<body class=" antialiased text-gray-800 dark:text-gray-200">
-    <div class="min-h-screen bg-white dark:bg-gray-900 pt-20">
+<body class="antialiased text-gray-800 dark:text-gray-200">
+    <div class="min-h-screen bg-white pt-20">
         <x-layout.navbar></x-layout.navbar>
         {{ $slot }}
         {{-- <x-layout.footer></x-layout.footer> --}}

@@ -11,6 +11,8 @@ module.exports = {
         extend: {
             colors: {
                 "login-primary": "rgb(var(--primary) / <alpha-value>)",
+                "dash-primary": "rgb(var(--dash) / <alpha-value>)",
+                "dash-secondary": "rgb(var(--dash-secondary) / <alpha-value>)",
             },
         },
     },

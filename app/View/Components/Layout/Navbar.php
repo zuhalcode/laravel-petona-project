@@ -25,6 +25,7 @@ class Navbar extends Component
             ['label' => 'Masuk', 'href' => 'login', 'type' => 'guest'],
             ['label' => 'Daftar', 'href' => 'register' , 'type' => 'guest'],
         ];
+        
         $this->itemCount = Cart::count();
     }
 

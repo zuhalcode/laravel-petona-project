@@ -7,7 +7,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/', fn () => view('home'));
+
 Route::get('/dashboard', fn () => view('dashboard.index'))->middleware('admin');
+Route::get('/dashboard/home', fn () => view('dashboard.home'));
+Route::get('/dashboard/users', fn () => view('dashboard.users'));
+Route::get('/dashboard/orders', fn () => view('dashboard.orders'));
+
 Route::get('/contact', fn () => view('contact'));
 
 Route::resource('/products', ProductController::class);

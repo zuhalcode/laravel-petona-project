@@ -3,17 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-// Set your Merchant Server Key
-\Midtrans\Config::$serverKey = 'SB-Mid-server-H9-IadFzqiqsYUKTIwte2UoK';
-// Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-\Midtrans\Config::$isProduction = false;
-// Set sanitization on (default)
-\Midtrans\Config::$isSanitized = true;
-// Set 3DS transaction for credit card to true
-\Midtrans\Config::$is3ds = true;
+
 
 class CartController extends Controller
 {
@@ -24,25 +18,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => rand(),
-                'gross_amount' => 10000,
-            ),
-            'customer_details' => array(
-                'first_name' => 'budi',
-                'last_name' => 'pratama',
-                'email' => 'budi.pra@example.com',
-                'phone' => '08111222333',
-            ),
-        );
-         
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-
         return view('cart', [
             'carts' => Cart::all(),
             'total' => 0,
-            'snap_token' => $snapToken
         ]);
     }
 
@@ -84,19 +62,43 @@ class CartController extends Controller
         $product = Product::where('id', $id)->first();
 
         $productCartExist = Cart::where('user_id', auth()->user()->id)->where('product_id', $id)->first();
+        
+        $currentOrder = Order::where('user_id', auth()->user()->id)->where('status_id', 2)->first();
 
-        if(empty($productCartExist)) 
-        {
+        if($currentOrder && $productCartExist) {
+            $productCartExist->order_id = $currentOrder->id;
+            $productCartExist->quantity += 1;
+            $productCartExist->update();
+
+        } elseif(!$currentOrder && $productCartExist) {
+            $newOrder = new Order;
+            $newOrder->user_id = auth()->user()->id;
+            $newOrder->total_price = 0;
+            $newOrder->save();
+
+            $productCartExist->order_id = $newOrder->id;
+
+        }elseif(!$currentOrder && empty($productCartExist)) {
+            $newOrder = new Order;
+            $newOrder->user_id = auth()->user()->id;
+            $newOrder->total_price = 0;
+            $newOrder->save();
+
             $cart = new Cart;
             $cart->user_id = auth()->user()->id;
             $cart->product_id = $product->id;
+            $cart->order_id = $newOrder->id;
             $cart->quantity = 1;
             $cart->save();
-            return redirect()->back();
-        }
 
-        $productCartExist->quantity += 1;
-        $productCartExist->update();
+        } else {
+            $cart = new Cart;
+            $cart->user_id = auth()->user()->id;
+            $cart->product_id = $product->id;
+            $cart->order_id = $currentOrder->id;
+            $cart->quantity = 1;
+            $cart->save();
+        }
 
         return redirect('/products');
     }

@@ -2,6 +2,8 @@
 
 :root {
     --primary: 0 152 91;
+    --dash: 59 223 0;
+    --dash-secondary: 230 255 222;
 }
 
 @tailwind base;
@@ -14,4 +16,21 @@
         -webkit-appearance: none;
         margin: 0;
     }
+}
+
+.screen {
+    @apply after:absolute after:top-0 after:z-[45] after:min-h-screen after:w-full after:bg-dark after:opacity-30;
+}
+
+.scrollbar::-webkit-scrollbar {
+    @apply h-[.2em] w-[2em];
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-dash-primary;
+    border: 0.75em solid white;
+}
+
+.bell-notification {
+    @apply after:absolute after:h-2 after:w-2 after:bg-dark;
 }

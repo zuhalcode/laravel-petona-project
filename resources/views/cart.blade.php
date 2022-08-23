@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class=" bg-slate-50 pl-2 pr-10">
+    <div class="bg-slate-50 pl-2 pr-10 relative">
         <h1 class=" mx-5 text-xl font-bold pt-3 pb-2 text-center lg:text-start">Keranjang Saya</h1>
         <div
             class="flex flex-col justify-center bg-slate-50 rounded-md
@@ -78,10 +78,12 @@
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 <button
-                                    class="lg:w-[20px] w-full text-center rounded-b-md flex items-center justify-center lg:bg-white sm:col-span-1
-                                    bg-slate-300 mx-auto hover:bg-red-500 cursor-pointer 
+                                    class="lg:w-[20px] w-full text-center rounded-b-md flex items-center justify-center cursor-pointer 
+                                    sm:col-span-1 
+                                    lg:bg-white
+                                    bg-slate-300 mx-auto hover:bg-red-500 lg:hover:bg-white
                                     group">
-                                    <svg class="w-6 h-6 text-slate-500 group-hover:text-white cursor-pointer transition-all"
+                                    <svg class="w-6 h-6 text-slate-500 group-hover:text-red-500 cursor-pointer transition-all"
                                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
                                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -129,37 +131,39 @@
                         Checkout
                     </button>
                 </li>
+            </div>
+        </div>
 
+        {{-- Payment Form --}}
+        <div id="payment-form"
+            class="w-[600px] h-[auto] bg-blue-300 rounded-md hidden absolute top-[-10px] right-[30%] z-50">
+            <x-payment-form></x-payment-form>
+            <div id="x" class="absolute top-0 right-0 p-3 text-lg font-bold">
+                <svg class="w-6 h-6 text-dark hover:text-red-500 cursor-pointer transition-all" fill="currentColor"
+                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                        clip-rule="evenodd"></path>
+                </svg>
             </div>
         </div>
     </div>
 </x-app-layout>
 
-<!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
-<script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-    data-client-key="SB-Mid-client-ATOGgTOqyCOX2dDo"></script>
-<!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
+
 
 <script type="text/javascript">
     // For example trigger on button clicked, or any time you need
-    var payButton = document.getElementById('pay-button');
-    payButton.addEventListener('click', function(e) {
+    let payButton = document.getElementById('pay-button');
+    payButton.addEventListener('click', (e) => {
         e.preventDefault()
-        // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-        window.snap.pay('{{ $snap_token }}', {
-            // Optional
-            onSuccess: function(result) {
-                /* You can bind the result.snap_token to your server-side token generator */
-                console.log(result.snap_token);
-                window.location.href = "http://localhost:8000";
-            },
-            // Optional
-            onPending: function(result) {
-                console.log(result);
-                window.location.href = "http://localhost:8000";
-            },
-        });
 
-        // customer will be redirected after completing payment pop-up
+        document.body.classList.toggle('screen')
+        document.getElementById('payment-form').classList.toggle('hidden')
     });
+
+    document.getElementById('x').addEventListener('click', () => {
+        document.body.classList.toggle('screen')
+        document.getElementById('payment-form').classList.toggle('hidden')
+    })
 </script>

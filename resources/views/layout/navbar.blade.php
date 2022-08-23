@@ -1,6 +1,6 @@
 <!-- ====== Navbar Section Start -->
 <header
-    class="fixed left-0 top-0 z-50 {{ Auth::check() ? 'bg-white' : 'bg-login-primary' }} w-full flex items-center shadow-md dark:bg-slate-900 h-20">
+    class="fixed left-0 top-0 z-40 {{ Auth::check() ? 'bg-white' : 'bg-login-primary' }} w-full flex items-center shadow-md dark:bg-slate-900 h-20">
     <div class="container">
         <div class="flex -mx-4 items-center justify-between relative">
             <a class="flex outline-none" href="/">
@@ -68,9 +68,8 @@
                                     </button>
                                     <div class="sm:bg-[green] text-[green] sm:text-white sm:absolute w-28 top-[37px] right-0 hidden flex-col rounded"
                                         id="dropdown">
-                                        @can('admin')
-                                            <a href="/dashboard" class="px-2 py-1 rounded hover:bg-yellow-500">Dashboard</a>
-                                        @endcan
+                                        <a href="/dashboard/home"
+                                            class="px-2 py-1 rounded hover:bg-yellow-500">Dashboard</a>
                                         <form action="/logout" class="px-2 py-1 cursor-pointer rounded hover:bg-yellow-500"
                                             method="post">
                                             @csrf
