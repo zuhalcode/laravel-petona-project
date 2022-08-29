@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="bg-slate-50 pl-2 pr-10 relative">
+    <div class="bg-slate-50 min-h-[530px] pl-2 pr-10 relative">
         <h1 class=" mx-5 text-xl font-bold pt-3 pb-2 text-center lg:text-start">Keranjang Saya</h1>
         <div
             class="flex flex-col justify-center bg-slate-50 rounded-md
@@ -73,6 +73,8 @@
                                 </div>
                             </div>
 
+
+
                             {{-- delete --}}
                             <form class="w-full lg:w-auto" method="POST" action="/cart/{{ $cart->id }}">
                                 @csrf
@@ -91,6 +93,7 @@
                                     </svg>
                                 </button>
                             </form>
+
 
                         </li>
                     @endforeach
@@ -126,10 +129,17 @@
                     Total : Rp. {{ number_format($total, 2, ',', '.') }}
                 </div>
                 <li class="mt-3 flex justify-center">
-                    <button id="pay-button"
-                        class="mx-auto rounded-md bg-blue-500 hover:bg-blue-400 px-3 py-2 text-white w-2/3">
-                        Checkout
-                    </button>
+                    @if (empty($carts->all()))
+                        <button id="pay-button" disabled
+                            class="mx-auto rounded-md bg-blue-500 hover:bg-blue-400 px-3 py-2 text-white w-2/3">
+                            Checkout
+                        </button>
+                    @else
+                        <button id="pay-button"
+                            class="mx-auto rounded-md  bg-blue-500 hover:bg-blue-400 px-3 py-2 text-white w-2/3">
+                            Checkout
+                        </button>
+                    @endif
                 </li>
             </div>
         </div>

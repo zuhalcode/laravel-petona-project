@@ -10,5 +10,4 @@ class Product extends Model
     protected $guarded = ['id'];
     use HasFactory;
 
-   
 }

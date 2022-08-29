@@ -16,9 +16,19 @@ class Order extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function cart() 
+    // public function cart() 
+    // {
+    //     return $this->hasMany(Cart::class, 'cart_id', 'id');
+    // }
+
+    public function order_details()
     {
-        return $this->hasMany(Cart::class, 'cart_id', 'id');
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->hasOne(Status::class, 'id', 'status_id');
     }
 
     

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -55,6 +56,7 @@ class OrderController extends Controller
         $cartProduct = Product::whereIn('id', $cart->pluck('product_id'))->get();
         
         $total = 0;
+        $orderId = rand(1000000, 9999999);
 
         foreach($cartProduct as $product) {
             $total += $product->price * $cart->where('product_id', $product->id)->first()->quantity;
@@ -62,7 +64,7 @@ class OrderController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => rand(),
+                'order_id' => $orderId,
                 'gross_amount' => $total,
             ),
             'customer_details' => array(
@@ -73,12 +75,29 @@ class OrderController extends Controller
             ),
         );
 
+
         $snapToken = \Midtrans\Snap::getSnapToken($params);
 
-        $order = new Order;
+        $order = Order::where('order_code', $orderId)->first();
+        if(!$order) $order = new Order;
+
         $order->user_id = auth()->user()->id;
+        $order->order_code = $orderId;
+        $order->first_name = $req['first-name'];
+        $order->last_name = $req['last-name'];
+        $order->email = $req['email'];
+        $order->phone = $req['phone'];
         $order->total_price = $params['transaction_details']['gross_amount'];
         $order->save();
+
+        foreach($cartProduct as $product) {
+            $orderDetail = new OrderDetail;
+            $orderDetail->user_id = auth()->user()->id;
+            $orderDetail->order_id = $order->id;
+            $orderDetail->product_id = $product->id;
+            $orderDetail->quantity = $cart->where('product_id', $product->id)->first()->quantity;
+            $orderDetail->save();
+        }
 
         // delete current cart
         Cart::where('user_id', auth()->user()->id)->delete();
