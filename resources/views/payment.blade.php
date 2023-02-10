@@ -10,7 +10,7 @@
         },
         onPending: function(result) {
             // redirect
-            window.location.href = "/";
+            window.location.href = "/dashboard/orders";
         },
         onError: function(result) {
             window.location.href = "/";
