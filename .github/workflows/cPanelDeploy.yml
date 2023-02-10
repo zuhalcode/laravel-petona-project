@@ -44,6 +44,8 @@ jobs:
         touch database/database.sqlite
     - name: Migrate Database
       run: php artisan migrate
+    - name: Config Laravel
+      run : php artisan config:clear
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
